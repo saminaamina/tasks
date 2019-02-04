@@ -1,0 +1,22 @@
+using System;
+
+namespace ConsoleApp1
+{
+    class Program
+    {
+        static void Main(string[] args)
+        {
+            Console.WriteLine("Centuries  =  ");
+            int Centuries = int.Parse(Console.ReadLine());
+            int years = Centuries * 100;
+            int days = (int)(years * 365.2422);
+            int hours = 24 * days;
+            int minutes = 60 * hours;
+            Console.WriteLine("{0} Centuries = {1} years = {2} days = {3} hours = {4} minutes " , Centuries , years , days , hours , minutes );
+
+
+        
+
+        }
+    }
+}
