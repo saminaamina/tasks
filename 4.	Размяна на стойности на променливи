@@ -1,0 +1,21 @@
+using System;
+public class Program
+    {
+      public static void Main()
+       {
+        byte a =5;
+		byte b = 10; 
+		byte c = 4 ; 
+		Console.WriteLine(a);
+		Console.WriteLine(b);
+		Console.WriteLine(c);
+		c = a ; 
+		a = b ;
+		b = c ;
+		Console.WriteLine(a);
+		Console.WriteLine(b);
+		Console.WriteLine(c);
+		
+		  
+	  }
+}
