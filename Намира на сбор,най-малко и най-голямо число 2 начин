@@ -1,0 +1,16 @@
+using System;
+using System.Linq;
+
+namespace Масиви_задача_първа
+{
+    class Program
+    {
+        static void Main(string[] args)
+        {
+            Console.WriteLine(Console.ReadLine().Split(' ').Select(int.Parse).ToArray().Sum());
+            Console.WriteLine(Console.ReadLine().Split(' ').Select(int.Parse).ToArray().Min());
+            Console.WriteLine(Console.ReadLine().Split(' ').Select(int.Parse).ToArray().Max());
+            Console.WriteLine(Console.ReadLine().Split(' ').Select(int.Parse).ToArray().Average());
+        }
+    }
+}
