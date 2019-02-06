@@ -1,0 +1,32 @@
+using System;
+using System.Linq;
+
+namespace Масиви_задача_първа
+{
+    class Program
+    {
+        static void Main(string[] args)
+        {
+            int[] numbers = Console.ReadLine().Split(' ').
+                            Select(int.Parse).ToArray();
+
+            int k = int.Parse(Console.ReadLine());
+            int [] sum = new int[numbers.Length];
+            for (int j = 1 ; j <= k; j++)
+            {
+                int panichka = numbers[numbers.Length - 1];
+                for (int i = 0; i < numbers.Length - 1; i++)
+                {
+                    numbers[numbers.Length - 1 - i] = numbers[numbers.Length - 2 - i];
+
+                }
+                numbers[0] = panichka;
+                for (int i = 0; i < sum.Length; i++)
+                {
+                    sum[i] += numbers[i];
+                }
+            }
+            Console.WriteLine(string.Join(" " , sum));
+        }
+    }
+}
