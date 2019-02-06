@@ -1,0 +1,21 @@
+using System;
+using System.Linq;
+
+namespace Масиви_задача_първа
+{
+    class Program
+    {
+        static void Main(string[] args)
+        {
+             int [] n = Console.ReadLine().Split(' ').Select(int.Parse).ToArray();
+             int[] numbers = new int[n];
+
+            for (int i = 0; i < numbers.Length; i++)
+                Console.WriteLine("numbers[{0}] = {1}", i, numbers);
+            Console.WriteLine("Sum = " + numbers.Sum());
+            Console.WriteLine("Min = " + numbers.Min());
+            Console.WriteLine("Max = " + numbers.Max());
+            Console.WriteLine("Average = " + numbers.Average()); 
+        }
+    }
+}
