@@ -1,0 +1,42 @@
+using System;
+using System.Linq;
+
+namespace ConsoleApp6
+{
+    class Program
+    {
+        static void Main(string[] args)
+        {
+            int[] arr = Console.ReadLine().Split(' ').Select(int.Parse).ToArray();
+
+            int k = arr.Length / 4;
+            int[] first = new int[k];
+            int[] last = new int[k];
+
+            for (int i = 0; i < k; i++)
+            {
+                first[i] = arr[k - 1 - i];
+            }
+
+
+            for (int i = 0; i < k; i++)
+            {
+                last[i] = arr[4 * k - 1 - i];
+            }
+            int[] concat = new int[2 * k];
+            for (int i = 0; i < k; i++)
+            {
+                concat[i] = first[i];
+            }
+            for (int i = k; i < 2 * k; i++)
+            {
+                concat[i] = last[i - k];
+            }
+
+            Console.WriteLine(String.Join(" ", concat));
+
+            arr.Reverse();
+           
+        }
+    }
+}
