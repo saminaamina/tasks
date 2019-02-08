@@ -1,0 +1,17 @@
+using System;
+public class Program
+    {
+      public static void Main()
+       {
+		  int n=int.Parse(Console.ReadLine());
+		  int sum = 0;
+		  for (int i=1 ; i<= n ; i++)
+		  {
+			 int num1 = int.Parse(Console.ReadLine());
+			 int num2 = int.Parse(Console.ReadLine());
+			  int delene = num1%num2;
+			  sum += delene;
+		  }
+		 Console.WriteLine(sum);
+	  }
+}
