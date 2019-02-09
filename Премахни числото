@@ -1,0 +1,22 @@
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace ConsoleApp9
+{
+    class Program
+    {
+        static void Main(string[] args)
+        {
+            List<int> nums =Console.ReadLine().Split(' ').Select(int.Parse).ToList();
+            List<int> result = new List<int>();
+            foreach (var item in nums)     
+            {
+                if (item != nums[nums.Count - 1]) result.Add(item);
+            }
+            Console.WriteLine(string.Join(" " , result));
+        }
+    }
+}
