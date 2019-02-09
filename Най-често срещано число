@@ -1,0 +1,38 @@
+using System;
+using System.Linq;
+
+namespace Най_често_срещано_число
+{
+    class Program
+    {
+        static void Main(string[] args)
+        {
+            int[] arr = Console.ReadLine().Split(' ').Select(int.Parse).ToArray();
+            int currSeen = arr[0];
+            int mostFrSeen = currSeen;
+            int currSeenCount = 1;
+            int mostFrSeenCount = currSeenCount;
+            for (int i = 1; i < arr.Length; i++)
+            {
+                if (arr[i] == currSeen)
+                {
+                    currSeenCount++;
+                }
+                else
+                {
+                    currSeen = arr[i];
+                    currSeenCount = 1;
+                }
+                if (currSeenCount > mostFrSeenCount)
+                {
+                    mostFrSeenCount = currSeenCount;
+                    mostFrSeen = currSeen;
+                }
+                currSeen = arr[i];
+                currSeenCount = 1;
+            }
+            Console.WriteLine("The number {0} is seen {1} ways" , mostFrSeen , mostFrSeenCount);
+            
+        }
+    }
+}
