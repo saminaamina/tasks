@@ -1,0 +1,25 @@
+using System;
+public class Program
+    {
+     public static void PrintReceipt()
+	 {
+	   Console.WriteLine("CASH RECEIPT");
+	   Console.WriteLine("------------------------------"); 
+	 }
+	public static void PrintReceiptBody()
+	{
+	  Console.WriteLine("Charged to ____________________");
+	  Console.WriteLine("Received by ___________________");
+	}
+	public static void PrintFooter()
+	{
+	 Console.WriteLine("------------------------------");
+	  Console.WriteLine("\u00A9 SoftUni");
+	}
+	public static void Main()
+       {
+	    PrintReceipt();
+		PrintReceiptBody();
+		PrintFooter();
+	   }
+}
