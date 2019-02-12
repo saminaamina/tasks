@@ -1,0 +1,40 @@
+using System;
+using System.Linq;
+using System.Text;
+using System.Collections.Generic;
+using System.Threading.Tasks;
+
+namespace ConsoleApp9
+{
+    class Program
+    {
+        static void Main(string[] args)
+        {
+            List<string> numsD = Console.ReadLine().Split(' ').ToList();
+        
+            List<int> nums = new List<int>();
+            for (int i = 0; i < numsD.Count; i++)
+            {
+               int chislo =int.Parse(numsD[i]);
+                int chisloRev = 0;
+
+
+                    while (chislo > 0)
+                {
+                    chisloRev = chislo % 10 + chisloRev*10;
+
+                    chislo /= 10;
+
+                }
+                    
+                    
+                    
+                    
+                   
+                nums.Add(chisloRev);
+            }
+
+            Console.WriteLine(nums.Sum());
+        }
+    }
+}
