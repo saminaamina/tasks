@@ -1,0 +1,41 @@
+using System;
+using System.Collections.Generic;
+using System.Linq;
+
+namespace ConsoleApp14
+{
+    class Program
+    {
+         static int Merkata(string exp1, string exp2)
+        {
+            int result = 0;
+            for (int i = 0; i < Math.Min(exp1.Length , exp2.Length); i++)
+            {
+                result += (int )exp1[i] * (int)exp2[i];
+            }
+            if (exp1.Length > exp2.Length)
+            {
+                for (int i = exp2.Length; i < exp1.Length; i++)
+                {
+                    result += (int)exp1[i];
+                }
+                
+            }
+            else
+            {
+                for (int i = exp1.Length; i < exp2.Length; i++)
+                {
+                    result += (int)exp2[i];
+                }
+            }
+            return result;
+        }
+        static void Main(string[] args)
+        {
+            /* string expression1 = Console.ReadLine();
+             string expression2 = Console.ReadLine(); */
+            string [] exp = Console.ReadLine().Split(' ').ToArray();
+            Console.WriteLine(Merkata(exp[0] , exp [1]));
+        }
+    }
+}
