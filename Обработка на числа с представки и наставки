@@ -1,0 +1,38 @@
+using System;
+using System.Linq;
+
+namespace ConsoleApp16
+{
+    class Program
+    {
+        static void Main(string[] args)
+        {
+            string[] str = Console.ReadLine().Split(' ').ToArray();
+            double sum = 0;
+            foreach (var item in str)
+            {
+                double calc = double.Parse(item.Substring(1, item.Length - 2));
+                if ((item[0] >= 'A') && (item[0] <= 'Z'))
+                {
+                    calc /= ((double)item[0] - 64);
+
+                }
+                else if ((item[0] >= 'a') && (item[0] <= 'z'))
+                {
+                    calc *= ((double)item[0] - 96);
+                }
+                if ((item[item.Length - 1] >= 'A') && (item[item.Length - 1] <= 'Z'))
+                {
+                    calc -= ((double)item[item.Length - 1] - 64);
+                }
+                else if ((item[item.Length - 1] >= 'a') && (item[item.Length - 1] <= 'z'))
+                {
+                    calc += ((double)item[item.Length - 1] - 96);
+                }
+                sum += calc;
+            }
+            Console.WriteLine($"{sum:F2}");
+
+        }
+    }
+}
