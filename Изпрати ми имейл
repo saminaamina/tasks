@@ -1,0 +1,19 @@
+using System;
+
+namespace ConsoleApp16
+{
+    class Program
+    {
+        static void Main(string[] args)
+        {
+            string email = Console.ReadLine();
+            if (email.IndexOf('@') >= email.Length / 2)
+                Console.WriteLine("Call her");
+            else
+            {
+                Console.WriteLine("She is not the one");
+            }
+
+        }
+    }
+}
