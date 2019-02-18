@@ -1,0 +1,43 @@
+   class Program
+    {
+        static void Main(string[] args)
+        {
+            
+            int rows = int.Parse(Console.ReadLine());
+            int cols = int.Parse(Console.ReadLine());
+            int [,] matrix = new  int [rows,cols];
+            for (int row = 0; row < rows; row++)
+            {
+                int[] array = Console.ReadLine().Split(' ').Select(int.Parse).ToArray();
+                for (int col  = 0; col < cols; col++)
+                {
+                    matrix[row, col] = array[col];
+                }
+
+            }
+            for (int row = 0; row < rows; row++)
+            {
+                
+                for (int col = 0; col < cols; col++)
+                {
+                    Console.Write("{0, 10}" , matrix[row,col]);
+                }
+                Console.WriteLine();
+            }
+            for (int col = 0; col < cols; col++)
+            {
+                int min = matrix[0,col];
+                for (int row = 0; row < rows; row++)
+                {
+                    if (matrix[row,col] < min )
+                    {
+                        min = matrix[row,col];
+                    }
+                }
+                Console.Write(" {0,10} " , min);
+            }
+
+        }
+
+    }
+}
