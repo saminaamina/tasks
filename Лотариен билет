@@ -1,0 +1,125 @@
+Using System;
+using System.Linq;
+namespace ConsoleApp18
+{
+    class Program
+    {
+        static void Main(string[] args)
+        {
+
+            int rows = int.Parse(Console.ReadLine());
+            int cols = rows;
+            int[,] matrix = new int[rows, cols];
+            for (int row = 0; row < rows; row++)
+            {
+                int[] array = Console.ReadLine().Split(' ').Select(int.Parse).ToArray();
+                for (int col = 0; col < cols; col++)
+                {
+                    matrix[row, col] = array[col];
+                }
+            }
+            for (int row = 0; row < rows; row++)
+            {
+
+                for (int col = 0; col < cols; col++)
+                {
+                    Console.Write("{0, 10}", matrix[row, col]);
+                }
+                Console.WriteLine();
+            }
+            for (int col = 0; col < cols; col++)
+            {
+                int min = matrix[0, col];
+
+            }
+            int sumGD = 0;
+            int sumCHDG = 0;
+            for (int i = 0; i < rows; i++)
+            {
+                sumGD += matrix[i, i];
+                if (matrix[i, i] % 2 == 0)
+                {
+                    sumCHDG = matrix[i, i];
+                }
+            }
+            int sumVD = 0;
+            for (int i = 0; i < rows; i++)
+            {
+                sumVD += matrix[i, rows - 1 - i];
+            }
+            int sumFR = 0;
+            int sumCHFR = 0;
+            for (int i = 0; i < rows; i++)
+            {
+              
+                sumFR += matrix[0, i];
+                if (matrix[0, i] % 2 == 0)
+                {
+                    sumCHFR = matrix[0, i];
+                }
+            }
+            int sumLR = 0;
+            int sumCHLR = 0;
+            for (int i = 0; i < rows; i++)
+            {
+                sumLR += matrix[rows - 1, i];
+                if (matrix[rows - 1, i] % 2 == 0)
+                {
+                    sumCHLR = matrix[rows - 1, i];
+                }
+            }
+            int sumFC = 0;
+            int sumNCFC = 0;
+            for (int i = 0; i < rows; i++)
+            {
+                sumFC += matrix[i, 0];
+                if (matrix[i, 0] % 2 == 1)
+                {
+                    sumNCFC = matrix[i,0];
+                }
+            }
+            int sumLC = 0;
+            int sumNCHLC = 0;
+            for (int i = 0; i < rows; i++)
+            {
+                sumLC += matrix[i, rows - 1];
+                if (matrix[i, i] % 2 == 1)
+                {
+                    sumNCHLC = matrix[i, i];
+                }
+            }
+            int sumNGD = 0;
+            for (int row = 0; row < rows; row++)
+            {
+
+                for (int col = row + 1; col < cols; col++)
+                {
+                    sumNGD += matrix[row, col];
+                }
+
+            }
+            int sumPGD = 0;
+            for (int row = 0; row < rows; row++)
+            {
+
+                for (int col = 0; col < row - 1; col++)
+                {
+                    sumPGD += matrix[row, col];
+                }
+
+            }
+            double award = 0;
+            if ( (sumGD == sumVD) || (sumPGD%2 == 0) || (sumPGD%2 == 1) )
+            {
+                award = sumPGD + sumCHDG + sumCHLR + sumCHFR + sumNCFC + sumNCHLC;
+                Console.WriteLine(award/4);
+
+            }
+            else
+            {
+                Console.WriteLine("NO");
+            }
+        }
+
+    }
+}
