@@ -8,16 +8,16 @@ namespace Raindrops
         {
             int amountOfRegions = int.Parse(Console.ReadLine());
             double density = double.Parse(Console.ReadLine());
-            int[] RaindropsCount = new int[amountOfRegions];
-            int[] squareMeters = new int[amountOfRegions];
+            int RaindropsCount = 0;
+            int squareMeters = 0; ;
             double regionalCoefficent = 0;
             for (int i = 0; i < amountOfRegions; i++)
             {
-                RaindropsCount[i] = int.Parse(Console.ReadLine());
-                squareMeters[i] = int.Parse(Console.ReadLine());
-                regionalCoefficent = (RaindropsCount ) / (squareMeters);
+                RaindropsCount = int.Parse(Console.ReadLine());
+                squareMeters = int.Parse(Console.ReadLine());
+                regionalCoefficent = RaindropsCount / squareMeters;
             }
-            Console.WriteLine(regionalCoefficent);
+           Console.WriteLine(regionalCoefficent);
         }
     }
 }
