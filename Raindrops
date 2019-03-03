@@ -1,0 +1,23 @@
+using System;
+
+namespace Raindrops
+{
+    class Program
+    {
+        static void Main(string[] args)
+        {
+            int amountOfRegions = int.Parse(Console.ReadLine());
+            double density = double.Parse(Console.ReadLine());
+            int[] RaindropsCount = new int[amountOfRegions];
+            int[] squareMeters = new int[amountOfRegions];
+            double regionalCoefficent = 0;
+            for (int i = 0; i < amountOfRegions; i++)
+            {
+                RaindropsCount[i] = int.Parse(Console.ReadLine());
+                squareMeters[i] = int.Parse(Console.ReadLine());
+                regionalCoefficent = (RaindropsCount ) / (squareMeters);
+            }
+            Console.WriteLine(regionalCoefficent);
+        }
+    }
+}
