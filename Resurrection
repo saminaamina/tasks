@@ -1,0 +1,28 @@
+using System;
+using System.Linq;
+
+namespace Resurrection
+{
+    class Program
+    {
+        static void Main(string[] args)
+        {
+           int numberOfPhoenix = int.Parse(Console.ReadLine());
+            int lengtOfPhoenix = 0;
+            decimal widthOfPhoenix = 0.0m;
+            int wingOfPhoenix = 0;
+            decimal [] totalYears = new decimal[numberOfPhoenix];
+            for (int i = 0; i < numberOfPhoenix; i++)
+            {
+                lengtOfPhoenix = int.Parse(Console.ReadLine());
+                widthOfPhoenix = decimal.Parse(Console.ReadLine());
+                wingOfPhoenix = int.Parse(Console.ReadLine());
+                totalYears[i] = lengtOfPhoenix * lengtOfPhoenix * (widthOfPhoenix + 2 * wingOfPhoenix);  
+            }
+            Console.WriteLine(string.Join(" /n" , totalYears));
+                
+              
+                
+            } 
+        }    
+    }
