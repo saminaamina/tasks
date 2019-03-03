@@ -9,23 +9,26 @@ namespace AnonymousDownsite
         {
             int affectedWebsites = int.Parse(Console.ReadLine());
             int securityKey = int.Parse(Console.ReadLine());
-            string [] siteName = new string [affectedWebsites];
-            int [] siteVisits = new int[affectedWebsites];
-            decimal[] siteCommercialPricePerVisit = new decimal[affectedWebsites];
-            decimal totalLoss = 0;
-            decimal siteLoss = 0;
+            string siteName = "";
+            int siteVisits = 0;
+            double siteCommercialPricePerVisit = 0;
+            double totalLoss = 0;
+            double siteLoss = 0;
+            double securityToken = 0;
             for (int i = 0; i < affectedWebsites; i++)
+           
             {
-                siteName[i] = Console.ReadLine();
-                siteVisits[i] = int.Parse(Console.ReadLine());
-                siteCommercialPricePerVisit[i] = decimal.Parse(Console.ReadLine());
-                siteLoss = siteVisits * {siteCommercialPricePerVisit};
+                siteName = Console.ReadLine();
+                siteVisits = int.Parse(Console.ReadLine());
+                siteCommercialPricePerVisit = double.Parse(Console.ReadLine());
+                siteLoss = siteVisits *  siteCommercialPricePerVisit;
                 totalLoss += siteLoss;
+                securityToken = Math.Pow(securityKey, siteCommercialPricePerVisit);
 
             }
             Console.WriteLine(string.Join(Environment.NewLine, siteName));
             Console.WriteLine($"Total Loss: {totalLoss:F20}");
-           
+            Console.WriteLine($"Security Token: {securityToken}");
         }
     }
 }
