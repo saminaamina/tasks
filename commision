@@ -1,0 +1,70 @@
+using System;
+using System.Linq;
+using System.Collections.Generic;
+
+namespace ConsoleApp11
+{
+    class Program
+    {
+        static void Main(string[] args)
+        {
+           const decimal comissionPercent = 0.073456764216789345M;
+            decimal bitcoin = decimal.Parse(Console.ReadLine());
+            decimal ethereum = decimal.Parse(Console.ReadLine());
+            decimal litecoin = decimal.Parse(Console.ReadLine());
+            int transactions = int.Parse(Console.ReadLine());
+            decimal[] bitcoinQty = new decimal[transactions];
+            decimal [] ethereumQty = new decimal[transactions];
+            decimal[] litecoinQty = new decimal[transactions];
+            decimal[] comission = new decimal[transactions];
+            for (int i = 0; i < transactions; i++)
+            {
+                decimal Qty = decimal.Parse(Console.ReadLine());
+                string currency = Console.ReadLine();
+                string operation = Console.ReadLine();
+                if (operation == "Buy")
+                {
+                    switch (currency)
+                    {
+                        case "Bitcoin":
+                            bitcoinQty[i] += Qty;
+                            comission[i] = Qty * bitcoin * comissionPercent;
+                            break;
+                        case "Ethereum":
+                            ethereumQty[i] += Qty;
+                            comission[i] = Qty * ethereum * comissionPercent;
+                            break;
+                            case "Litecoin" :
+                            litecoinQty[i] += Qty;
+                            comission[i] = Qty * litecoin * comissionPercent;
+                            break;
+
+                        default: break;
+                    }
+                }
+                else if (operation == "Sell")
+                {
+                    switch (currency)
+                    {
+                        case "Bitcoin":
+                            bitcoinQty [i] -= Qty;
+                            comission[i] = Qty * bitcoin * comissionPercent;
+                            break;
+                        case "Ethereum":
+                            ethereumQty[i] -= Qty;
+                            comission[i] = Qty * ethereum * comissionPercent;
+                            break;
+                        case "Litecoin":
+                            litecoinQty[i] -= Qty;
+                            comission[i] = Qty * litecoin * comissionPercent;
+                            break;
+                        default: break;
+                    } 
+                }
+            }
+            decimal wallet = (bitcoinQty.Sum() * bitcoin) + ethereumQty.Sum() * ethereum + litecoinQty.Sum() * litecoin -
+                comission.Sum();
+            Console.WriteLine($"(wallet:F16)");
+        }
+    }
+}
