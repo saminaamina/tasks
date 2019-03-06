@@ -1,0 +1,35 @@
+using System;
+using System.Linq;
+
+namespace AnonymousDownsite
+{
+    class Program
+    {
+        static void Main(string[] args)
+        {
+          
+            int affectedWebsites = int.Parse(Console.ReadLine());
+            int securityKey = int.Parse(Console.ReadLine());
+            string[] siteNames = new string[affectedWebsites];
+            decimal siteLoss = 0;
+            decimal totalLoss = 0;
+            for (int i = 0; i < affectedWebsites; i++)
+            {
+                string[] input = Console.ReadLine().Split(' ').ToArray();
+                siteNames[i] = input[0];
+                int siteVisits = int.Parse(input[1]);
+                decimal siteCommercialPricePerVisit = decimal.Parse(input[2]);
+                siteLoss = siteVisits * siteCommercialPricePerVisit;
+                totalLoss += siteLoss;
+
+                
+            }
+            double securityToken = Math.Pow(securityKey, affectedWebsites);
+            Console.WriteLine(string.Join(" /n", siteNames));
+            Console.WriteLine($"Total Loss : {totalLoss:F20}");
+            Console.WriteLine($"Security Token: {securityToken}");
+
+
+        }
+    }
+}
