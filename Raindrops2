@@ -1,0 +1,26 @@
+using System;
+using System.Linq;
+
+namespace Raindrops1
+{
+    class Program
+    {
+        static void Main(string[] args)
+        {
+            
+            int amountOfRegions = int.Parse(Console.ReadLine());
+            double density = double.Parse(Console.ReadLine());
+            double regionalCoefficient = 0;
+            double totalRegionalCoefficient = 0;
+            for (int i = 0; i < amountOfRegions; i++)
+            {
+                string[] input = Console.ReadLine().Split(' ').ToArray();
+                int raindropsCount = int.Parse(input[0]);
+                int squareMeters = int.Parse(input[1]);
+                regionalCoefficient = raindropsCount / squareMeters;
+                totalRegionalCoefficient += regionalCoefficient/amountOfRegions;
+            }
+            Console.WriteLine($"{totalRegionalCoefficient:F3}");
+        }
+    }
+}
