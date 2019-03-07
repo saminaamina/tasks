@@ -1,0 +1,76 @@
+using System;
+using System.Linq;
+using System.Collections.Generic;
+
+namespace AnonymousCache
+{
+    class Program
+    {
+        static void Main(string[] args)
+        {
+            Dictionary<string, Dictionary<string, int>> dataSets
+            = new Dictionary<string, Dictionary<string, int>>();
+            Dictionary<string, Dictionary<string, int>> cache
+           = new Dictionary<string, Dictionary<string, int>>();
+
+            while (true)
+            {
+                string input = Console.ReadLine();
+                if (input == " thetinggoesskrra")
+                {
+                    break;
+                }
+                string[] inputData = input.Split(' ').ToArray();
+                if (inputData.Length == 1)
+                {
+                    string dataSet = inputData[0];
+                    if (dataSets.ContainsKey(dataSet))
+                    {
+                        dataSets.Add(dataSet, new Dictionary<string, int>());
+                        if (cache.ContainsKey(dataSet))
+                        {
+                            Dictionary<string, int> arr = cache[dataSet];
+                            foreach (var item in arr)
+                            {
+                               
+                                dataSets[dataSet].Add(item.Key, item.Value);
+                                cache.Remove(dataSet);                         }
+                        }
+                    }
+
+                }
+                else
+                {
+                   string dataSet =  inputData[4];
+                    string dataKey = inputData[0];
+                    int dataSize = int.Parse(inputData[2]);
+                    if (dataSets.ContainsKey(dataSet))
+                    {
+
+                        dataSets[dataSet].Add(dataKey, dataSize);
+                    }
+                    else
+                    {
+                        if (! cache.ContainsKey(dataSet))
+                        {
+                            cache.Add(dataSet, new Dictionary<string, int>());
+                            cache[dataSet].Add(dataKey, dataSize);
+                        } 
+                    }
+                }
+                List<int> sumi = new List<int> < int > ();
+                foreach(var itemDS in dataSets)
+                {
+                    int suma = 0;
+                    foreach(var item in itemDS.Value)
+                    {
+                        suma += item.Value;
+                    }
+                    sumi.Add(suma);
+                }
+                sumi.Max();
+                Console.WriteLine($"Data Set : {dataSets} , Total Size : {}");
+            }
+        }
+    }
+}
