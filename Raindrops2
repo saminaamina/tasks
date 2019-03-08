@@ -17,7 +17,7 @@ namespace Raindrops1
                 string[] input = Console.ReadLine().Split(' ').ToArray();
                 int raindropsCount = int.Parse(input[0]);
                 int squareMeters = int.Parse(input[1]);
-                regionalCoefficient = raindropsCount / squareMeters;
+                regionalCoefficient = (double) raindropsCount / squareMeters;
                 totalRegionalCoefficient += regionalCoefficient/amountOfRegions;
             }
             Console.WriteLine($"{totalRegionalCoefficient:F3}");
