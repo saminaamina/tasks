@@ -1,0 +1,59 @@
+using System;
+using System.Linq;
+using System.Collections.Generic;
+namespace Icarus_exam1_problem2
+{
+    class Program
+    {
+        static void Main(string[] args)
+        {
+            int[] planes = Console.ReadLine().Split(' ').Select(int.Parse).ToArray();
+            int position = int.Parse(Console.ReadLine());
+            int IcarusDemage = 1;
+            while (true)
+            {
+                string[] input = Console.ReadLine().Split(' ').ToArray();
+                if (input[0] == "Supernova")
+                {
+                    break;
+                }
+                else
+                {
+                    string direction = input[0];
+                    int steps = int.Parse(input[1]);
+                    if (direction == "left" && steps != 0)
+                    {
+                        for (int i = 1; i <= steps; i++)
+                        {
+                            if (position <= 0)
+                            {
+                                IcarusDemage++;
+                                position = planes.Length;
+                            }
+
+                            planes[position - 1] -= IcarusDemage;
+                            position--;
+                        }
+                    }
+                    else if (direction == "right" && steps != 0)
+                    {
+                        for (int i = 1; i <= steps; i++)
+                        {
+                            if (position >= planes.Length - 1)
+                            {
+                                IcarusDemage++;
+                                position = -1;
+                            }
+
+                            planes[position + 1] -= IcarusDemage;
+                            position++;
+                        }
+                    }
+                    Console.WriteLine(string.Join(" ", planes));
+
+
+                }
+            }
+        }
+    }
+}
