@@ -1,0 +1,75 @@
+using System;
+using System.Linq;
+using System.Collections.Generic;
+
+namespace Anonymous_Vox
+{
+    class Program
+    {
+        static void Main(string[] args)
+        {
+            string waitedKind = "Type";
+            List<string> answer = new List<string>();
+
+            while (true)
+            {
+                string input = Console.ReadLine();
+                if (input  == "Davai Emo")
+                {
+                    break;
+                }
+                string[] inputLine = input.Split(':').ToArray();
+                string kind = inputLine[0];
+                
+               
+                switch (kind)
+                {
+                    case "Type":
+                        if (waitedKind == "Type")
+                        {
+                            inputLine[1] = inputLine[1].Trim();
+                            if (inputLine[1] == "Normal" || inputLine[1] == "Warning" || inputLine[1] == "Danger")
+                            {
+                                answer.Add(inputLine[1]);
+                                waitedKind = "Source";
+                            }
+                        }
+                        break;
+                    case "Source":
+                        if (waitedKind == "Source")
+                        {
+                            answer.Add(inputLine[1]);
+                            waitedKind = "Forecast";
+                        }
+                        break;
+                    case "Forecast":
+                        if (waitedKind == "Forecast")
+                        {
+                            if (!inputLine[1].Contains('!') &&
+                                !inputLine[1].Contains('.') &&
+                                !inputLine[1].Contains(',') &&
+                                !inputLine[1].Contains('?'))
+                            {
+                                answer.Add(inputLine[1]);
+                                waitedKind = "Type";
+                            }
+                        }
+                        break;
+
+                    default:
+                        break;
+
+                    
+                }
+              // answer.Add(build[0] + build[1] + build[2]);
+            }
+            for (int i = 0; i < answer.Count ; i+=3)
+            {
+                //  Console.WriteLine(string.Join("\n", answer));
+                Console.WriteLine($"({answer[i]}) {answer[i+2]} ~ {answer[i+1]}");
+
+            }
+           
+        }
+    }
+}
