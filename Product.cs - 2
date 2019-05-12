@@ -1,0 +1,80 @@
+using System;
+using System.Collections.Generic;
+using System.Text;
+
+namespace VendingMachines
+{
+    public class Product
+    {
+        private string type;
+        private string name;
+        private double price;
+        private static int ordersCount = 0;
+
+        public Product(string type, string name, double price)
+        {
+            this.Type = type;
+            this.Name = name;
+            this.Price = price;
+        }
+
+        public string Type
+        {
+            get { return this.type; }
+            set
+            {
+                foreach (var ch in value)
+                {
+                    if ((int)ch < 65 || (int)ch > 90)
+                    {
+                        throw new ArgumentException("Invalid type!");
+                    }
+                }
+               
+                this.type = value;
+            }
+        }
+
+        public string Name
+        {
+            get { return this.name; }
+            set
+            {
+                if (value.Length < 2)
+                {
+                    throw new ArgumentException("Invalid name!");
+                }
+                this.name = value;
+            }
+        }
+
+        public double Price
+        {
+            get { return this.price; }
+            set
+            {
+                if (value <= 0)
+                {
+                    throw new ArgumentException("Invalid price!");
+                }
+                this.price = value;
+            }
+        }
+
+        public static int OrdersCount
+        {
+            get { return ordersCount; }
+        }
+
+        public static void IncreaseOrdersCount()
+        {
+            ordersCount++;
+        }
+
+        public override string ToString()
+        {
+            return $"Product with type - {this.type} and name - {this.name}";
+        }
+
+    }
+}
