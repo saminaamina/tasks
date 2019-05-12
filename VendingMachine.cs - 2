@@ -1,0 +1,151 @@
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+
+namespace VendingMachines
+{
+    public class VendingMachine
+    {
+        private string id;
+        private List<Product> products = new List<Product>();
+        private double totalSalesAmount = 0;
+        private double battery = 100;
+
+
+
+        public VendingMachine(string id) : this(id, new List<Product>())
+        {
+        }
+
+        public VendingMachine(string id, List<Product> products)
+        {
+            this.Id = id;
+            this.Products = products;
+        }
+        
+        public string Id
+        {
+            get { return this.id; }
+            set
+            {
+
+                if (value.Length < 3)
+                {
+                    throw new ArgumentException("Invalid machine id!");
+                }
+                foreach (var ch in value)
+                {
+                    if ((int)ch < 65 || (int)ch > 90)
+                    {
+                        throw new ArgumentException("Invalid machine id!");
+                    }
+                }
+                this.id = value;
+            }
+        }
+
+        public List<Product> Products
+        {
+            get { return this.products; }
+            set { this.products = value; }
+        }
+
+        public double TotalSalesAmount
+        {
+            get { return this.totalSalesAmount; }
+            set
+            {
+                this.totalSalesAmount = value;
+            }
+        }
+
+        public double Battery
+        {
+            get { return this.battery; }
+            set
+            {
+                if (value < 0)
+                {
+                    throw new ArgumentException("Out of battery!");
+                }
+                this.battery = value;
+            }
+        }
+        
+        public void Recharge()
+        {
+            this.battery = 100;
+        }
+        
+        public void ClearSales()
+        {
+            this.totalSalesAmount = 0;
+        }
+
+        public int CheckProductQuantityOfGivenType(string type)
+        {
+            return products.Where(p => p.Type == type).Count();
+        }
+
+        public void AddProduct(Product product)
+        {
+           products.Add(product);
+        }
+
+        public void RemoveProduct(string productName)
+        {
+            this.products.Remove(products.Where(p => p.Name == productName).First());          
+        }
+
+        public Product GetMostExpensiveProduct()
+        {
+            return products.OrderByDescending(p => p.Price).First();
+        }
+
+        public string SellProduct(string productName)
+        {
+            var product = products.Where(p => p.Name == productName).First();
+
+            if (this.battery < product.Price * 0.8 + 2)
+            {
+                throw new ArgumentException("Out of battery!");
+            }
+
+            this.battery -= product.Price * 0.8 + 2;
+
+            products.Remove(product);
+
+            Product.IncreaseOrdersCount();
+
+            this.totalSalesAmount += product.Price;
+
+            return $"{product.Name} for {product.Price}lv.";
+            
+        }
+
+        public override string ToString()
+        {
+            return $"Machine: {this.id} has the following available products:\n" +
+                $"{string.Join("\n", products.Select(p => p.ToString()))}" +
+                $"With total sales amount: {this.totalSalesAmount}.";
+        }
+
+        public void RemoveAllProductsOfGivenType(string type)
+        {
+            products.RemoveAll(p => p.Type == type);
+        }
+
+        public string GetInfoAboutAllProductsByType()
+        {
+            string result = "";
+            foreach (var p in products.OrderBy(p => products.Count()).ThenBy(p => p.Type))
+            {
+                result += $"Type: {p.Type} has total of - {products.Where(x => x.Type ==  p.Type)} products\n";
+            }
+
+            return result;
+        }
+
+    }
+}
