@@ -1,0 +1,146 @@
+using System;
+using System.Collections.Generic;
+using System.Collections.ObjectModel;
+using System.Linq;
+using System.Text;
+
+namespace Task1
+{
+    class Car
+    {
+
+        private string manufacter;
+        private string model;
+        private  double loadCapacity;
+        private List<Part> parts = new List<Part>();
+        private double fuel = 100;
+        private  static int orderCount = 0;
+
+
+        public string Manufacter
+        {
+            get { return this.manufacter; }
+            set {
+                if (value.Length < 3)
+                {
+                    throw new ArgumentException("Invalidi  manufacter name ");
+                }
+                this.manufacter = value; }
+        }
+        public string Model
+        {
+            get { return this.model; }
+            set {
+                if (value.Length < 3)
+                {
+                    throw new ArgumentException("Invalidi  model  name ");
+                }
+                this.model = value; }
+        }
+        public double LoadCapacity
+        {
+            get { return this.loadCapacity; }
+            set {
+                if (value < 0)
+                {
+                    throw new ArgumentException("Invalidid load capacity");
+                }
+
+                this.loadCapacity = value; } 
+        }
+        public List<Part> Parts1
+        {
+            get { return this.parts; }
+            set { this.parts = value; }
+        }
+        public double Fuel
+        {
+            get { return this.fuel; }
+            set { this.fuel = value; }
+        }
+      
+        public Car(string manufacturer, string model, double loadCapacity)
+        {
+            this.Manufacter = manufacturer;
+            this.Model = model;
+            this.LoadCapacity = loadCapacity;
+            orderCount++;
+        }
+
+        public double GetCarPrice()
+        {
+            return this.parts.Sum(p=>p.Price);
+        }
+
+        public ReadOnlyCollection<Part> ReadOnlyParts
+        {
+            get { return this.parts.AsReadOnly(); }
+        }
+
+        public void AddPart(Part part)
+        {
+            parts.Add(part);        
+        }
+
+        public void AddMultipleParts(List<Part> passedParts)
+        {
+           /* foreach (var p in passedParts )
+            {
+                parts.Add(p);
+            } */
+            passedParts.ForEach(p => parts.Add(p));
+        }
+
+        public void RemovePartByName(string name)
+        {
+            // this.parts.Select(parts => parts.Name == name);
+          //  parts.Remove(parts.Where(p => p.Name == name).First());
+
+            for(int i= 0; i < parts.Count; i++)
+            {
+                if (parts[i].Name == name)
+                {
+                    parts.Remove(parts[i]);
+                   // i--;
+                }
+            }
+        }
+        public List<Part> GetPartsWithPriceAbove(double price)
+        {
+
+            return parts.Where(p => p.Price > price).ToList();
+        }
+
+        public Part GetMostExpensivePart()
+        {
+            double maxP = this.parts.Select(p => p.Price).Max();
+            return parts.Where(p => p.Price == maxP).First();
+        }
+
+        public static int OrdersCount
+        {
+            get { return orderCount; }
+
+        }
+
+        public void Drive(double distance)
+        {
+            this.fuel -= loadCapacity * 0.2 * distance;
+        }
+
+        public bool ContainsPart(string partName)
+        {
+           return parts.Select(p => p.Name).Contains(partName);
+        }
+        public override string ToString()
+        {
+            return $"{this.Model.ToUpper() } made by {this.Manufacter} \n Available parts : \n " + string.Join(" \n ", parts.Select(p=>p.ToString())) + " \n " + $"With total price of : {this.GetCarPrice()}";
+            
+        }
+
+
+
+
+
+    }
+}
