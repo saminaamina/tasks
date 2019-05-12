@@ -1,0 +1,65 @@
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+
+namespace OnlineStore
+{
+    class Order
+    {
+        private int orderNumber;
+        private List<Product> products = new List<Product>();
+        private static int ordersCount = 0;
+        public int OrderNumber
+        {
+            get { return this.orderNumber; }
+            set { this.orderNumber = value; }
+
+        }
+        public List<Product> Products
+        {
+            get { return this.products; }
+            set { this.products = value; }
+        }
+        public static int OrdersCount
+        {
+            get { return Order.ordersCount ; }
+            set { Order.ordersCount= value; }
+
+        }
+        public Order(int orderNumber, List<Product> products)
+        {
+            this.OrderNumber = orderNumber;
+            this.Products = products;
+            Order.OrdersCount++;
+        }
+        public void AddProduct(Product product)
+        {
+            this.products.Add(product);
+                                                                                                
+        }
+        public double GetOrderTotalPrice()
+        {
+            return this.Products.Sum(p => p.Price);
+
+        }
+        public double GetDiscountedProductsTotalPrice()
+        {
+            return this.Products.Where(p => p.IsOnPromotion/* = true */).Sum(p => p.Price);
+        }
+        public int GetDiscountedProductsCount()
+        {
+            return this.Products.Where(p => p.IsOnPromotion).Count();
+
+        }
+
+
+        public override string ToString()
+        {
+            return $"Order #{this.OrderNumber} has the following products: \n" +
+                string.Join("\n", this.products.Select(p => "### "+ p.ToString()));
+             
+        }
+
+    }
+}
