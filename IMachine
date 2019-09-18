@@ -1,0 +1,14 @@
+using System;
+using System.Collections.Generic;
+using System.Text;
+
+namespace Machine
+{
+    interface IMachine
+    {
+        string MachineType { get; set; }
+        bool Start();
+        bool Stop();
+
+    }
+}
